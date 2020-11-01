@@ -135,4 +135,17 @@ public class IPLAnalyserTest {
 			System.out.println("Something went wrong, please recheck");
 		}
 	} 
+	
+	@Test
+	public void givenIPLBowlerCSVFile_WhenSortedByEconomy_ShouldReturnSortedresult() {
+		try {
+			IPLAnalyser iplAnalyser = new IPLAnalyser();
+			iplAnalyser.loadIPLBowlerData(IPL_BOWLERS_CSV_FILE_PATH);
+			String sortedIPLData = iplAnalyser.getBowlingEconomyWiseSortedData();
+			IPLBowlerCSV[] bowlerCSV = new Gson().fromJson(sortedIPLData, IPLBowlerCSV[].class);
+			Assert.assertEquals("Shivam Dube", bowlerCSV[0].PLAYER);
+		} catch (IPLAnalyserException e) {
+			System.out.println("Something went wrong, please recheck");
+		}
+	} 
 }

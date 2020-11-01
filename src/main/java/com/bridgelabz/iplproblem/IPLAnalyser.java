@@ -120,4 +120,12 @@ public class IPLAnalyser {
 				.collect(Collectors.toList());
 		return new Gson().toJson(strikeRateWiseSortedList);
 	}
+
+	// Sorting the list according to best bowling Economy
+	public String getBowlingEconomyWiseSortedData() {
+		List<IPLBowlerCSV> bowlingEconomyWiseSortedList = bowlerCSVList.stream()
+				.sorted(Comparator.comparing(bowler -> bowler.Econ))
+				.collect(Collectors.toList());
+		return new Gson().toJson(bowlingEconomyWiseSortedList);
+	}
 }
