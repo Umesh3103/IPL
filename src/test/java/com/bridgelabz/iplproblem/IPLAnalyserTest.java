@@ -213,4 +213,17 @@ public class IPLAnalyserTest {
 			System.out.println("Something went wrong, please recheck");
 		}
 	}
+	
+	@Test
+	public void givenIPLBatsmanCSVFile_WhenSortedByMaximum100sWithBattingAverage_ShouldReturnSortedresult() {
+		try {
+			IPLAnalyser iplAnalyser = new IPLAnalyser();
+			iplAnalyser.loadIPLBatsmanData(IPL_BATSMAN_CSV_FILE_PATH);
+			String sortedIPLData = iplAnalyser.getHundredsAndAverageWiseSortedData();
+			IPLBatsmanCSV[] batsmanCSV = new Gson().fromJson(sortedIPLData, IPLBatsmanCSV[].class);
+			Assert.assertEquals("David Warner", batsmanCSV[0].PLAYER);
+		} catch (IPLAnalyserException e) {
+			System.out.println("Something went wrong, please recheck");
+		}
+	} 
 }

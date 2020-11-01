@@ -24,6 +24,12 @@ public class IPLBatsmanCSV {
 	
 	@CsvBindByName(column = "BF", required =true)
 	public Double BF;
+	
+	@CsvBindByName(column = "Hundreds", required =true)
+	public Double Hundreds;
+	
+	@CsvBindByName(column = "Fifties", required =true)
+	public Double Fifties;
 
 	@Override
 	public String toString() {

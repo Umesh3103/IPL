@@ -185,4 +185,14 @@ public class IPLAnalyser {
 		}
 		return averageList.get(0);
 	}
+
+	// Finding a player with maximum number of hundreds and best batting average
+	public String getHundredsAndAverageWiseSortedData() {
+		Comparator<IPLBatsmanCSV> comparator = Comparator.comparing(batsman -> batsman.Hundreds);
+		List<IPLBatsmanCSV> HundredsAndAverageWiseSortedList= batsmanCSVList.stream()
+				.sorted(comparator.thenComparing(batsman -> batsman.Avg))
+				.collect(Collectors.toList());
+		Collections.reverse(HundredsAndAverageWiseSortedList);
+		return new Gson().toJson(HundredsAndAverageWiseSortedList);
+	}
 }
