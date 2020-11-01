@@ -167,12 +167,19 @@ public class IPLAnalyser {
 		return this.allRounder(sortedArrayByBattingAverage, sortedArrayByBowlingAverage);
 	}
 
-	// Getting the allrounder with best bowling and betting average 
-	private String allRounder(IPLBatsmanCSV[] sortedArrayByBattingAverage, IPLBowlerCSV[] sortedArrayByBowlingAverage) {
+	// Findind a player with most runs as well as most wickets
+	public String getRunsAndWicketWiseSortedData() {
+		IPLBatsmanCSV[] sortedArrayByMostRuns = (IPLBatsmanCSV[]) new Gson().fromJson(this.getRunsAndAverageWiseSortedData(), IPLBatsmanCSV[].class);
+		IPLBowlerCSV[] sortedArrayByMostWickets = (IPLBowlerCSV[]) new Gson().fromJson(this.getWicketsWithAverageWiseSortedData(), IPLBowlerCSV[].class);
+		return this.allRounder(sortedArrayByMostRuns, sortedArrayByMostWickets);
+	}
+	
+	// Getting the allrounder with best bowling and betting performance 
+	private String allRounder(IPLBatsmanCSV[] sortedArrayByBattingData, IPLBowlerCSV[] sortedArrayByBowlingData) {
 		List<String> averageList = new ArrayList(); 
-		for(IPLBatsmanCSV runs: sortedArrayByBattingAverage){
-			for(IPLBowlerCSV bowl: sortedArrayByBowlingAverage){
-				if(runs.PLAYER.equals(bowl.PLAYER))
+		for(IPLBatsmanCSV runs: sortedArrayByBattingData){
+			for(IPLBowlerCSV ball: sortedArrayByBowlingData){
+				if(runs.PLAYER.equals(ball.PLAYER))
 					averageList.add(runs.PLAYER);
 			}
 		}
