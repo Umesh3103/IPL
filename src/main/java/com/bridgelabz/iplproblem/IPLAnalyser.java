@@ -102,4 +102,13 @@ public class IPLAnalyser {
 		Collections.reverse(runsAndAverageWiseSortedList);
 		return new Gson().toJson(runsAndAverageWiseSortedList);
 	}
+
+	// Sorting the list according to best bowling average
+	public String getTopBowlingAverageWiseSortedData() {
+		List<IPLBowlerCSV> averageWiseSortedList = bowlerCSVList.stream()
+				.filter(bowler -> bowler.Avg>0)
+				.sorted(Comparator.comparing(bowler -> bowler.Avg))
+				.collect(Collectors.toList());
+		return new Gson().toJson(averageWiseSortedList);
+	}
 }
