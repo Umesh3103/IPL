@@ -161,4 +161,17 @@ public class IPLAnalyserTest {
 			System.out.println("Something went wrong, please recheck");
 		}
 	} 
+	
+	@Test
+	public void givenIPLBowlerCSVFile_WhenSortedByBowlingAverageWithStrikeRate_ShouldReturnSortedresult() {
+		try {
+			IPLAnalyser iplAnalyser = new IPLAnalyser();
+			iplAnalyser.loadIPLBowlerData(IPL_BOWLERS_CSV_FILE_PATH);
+			String sortedIPLData = iplAnalyser.getBowlingAverageWithStrikeRateWiseSortedData();
+			IPLBowlerCSV[] bowlerCSV = new Gson().fromJson(sortedIPLData, IPLBowlerCSV[].class);
+			Assert.assertEquals("Anukul Roy", bowlerCSV[0].PLAYER);
+		} catch (IPLAnalyserException e) {
+			System.out.println("Something went wrong, please recheck");
+		}
+	} 
 }
