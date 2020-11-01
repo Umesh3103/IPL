@@ -82,4 +82,14 @@ public class IPLAnalyser {
 		Collections.reverse(strikeRateWithSixesAndFoursWiseSortedList);
 		return new Gson().toJson(strikeRateWithSixesAndFoursWiseSortedList);
 	}
+
+	// Sorting the list according to best average and strike rate 
+	public String getAverageAndStrikeRateWiseSortedData() {
+		Comparator<IPLBatsmanCSV> comparator = Comparator.comparing(batsman -> batsman.Avg);
+		List<IPLBatsmanCSV> averageAndStrikeRateWiseSortedList = batsmanCSVList.stream()
+				.sorted(comparator.thenComparing(batsman -> batsman.SR))
+				.collect(Collectors.toList());
+		Collections.reverse(averageAndStrikeRateWiseSortedList);
+		return new Gson().toJson(averageAndStrikeRateWiseSortedList);
+	}
 }
