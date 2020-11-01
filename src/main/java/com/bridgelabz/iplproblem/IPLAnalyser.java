@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -157,5 +158,24 @@ public class IPLAnalyser {
 				.sorted(comparator.thenComparing(bowler -> bowler.Avg).reversed())
 				.collect(Collectors.toList());
 		return new Gson().toJson(bowlingAverageWithStrikeRateWiseSortedList);
+	}
+
+	// Finding a player with best batting as well as bowling average 
+	public String getBattingAndBowlingAverageWiseSortedData() {
+		IPLBatsmanCSV[] sortedArrayByBattingAverage = (IPLBatsmanCSV[]) new Gson().fromJson(this.getAverageWiseSortedData(), IPLBatsmanCSV[].class);
+		IPLBowlerCSV[] sortedArrayByBowlingAverage = (IPLBowlerCSV[]) new Gson().fromJson(this.getTopBowlingAverageWiseSortedData(), IPLBowlerCSV[].class);
+		return this.allRounder(sortedArrayByBattingAverage, sortedArrayByBowlingAverage);
+	}
+
+	// Getting the allrounder with best bowling and betting average 
+	private String allRounder(IPLBatsmanCSV[] sortedArrayByBattingAverage, IPLBowlerCSV[] sortedArrayByBowlingAverage) {
+		List<String> averageList = new ArrayList(); 
+		for(IPLBatsmanCSV runs: sortedArrayByBattingAverage){
+			for(IPLBowlerCSV bowl: sortedArrayByBowlingAverage){
+				if(runs.PLAYER.equals(bowl.PLAYER))
+					averageList.add(runs.PLAYER);
+			}
+		}
+		return averageList.get(0);
 	}
 }
