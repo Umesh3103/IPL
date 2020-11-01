@@ -195,4 +195,14 @@ public class IPLAnalyser {
 		Collections.reverse(HundredsAndAverageWiseSortedList);
 		return new Gson().toJson(HundredsAndAverageWiseSortedList);
 	}
+
+	// Finding a player with zero 100s and zero 50s with best batting average
+	public String getZeroHundredsAndFiftiesWithAverageWiseSortedData() {
+		List<IPLBatsmanCSV> HundredsAndAverageWiseSortedList= batsmanCSVList.stream()
+				.filter(batsman -> (batsman.Hundreds==0 && batsman.Fifties==0))
+				.sorted(Comparator.comparing(batsman -> batsman.Avg))
+				.collect(Collectors.toList());
+		Collections.reverse(HundredsAndAverageWiseSortedList);
+		return new Gson().toJson(HundredsAndAverageWiseSortedList);
+	}
 }
