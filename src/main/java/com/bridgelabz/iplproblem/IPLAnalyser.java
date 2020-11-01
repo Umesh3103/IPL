@@ -73,4 +73,13 @@ public class IPLAnalyser {
 		Collections.reverse(sixesAndFoursWiseSortedList);
 		return new Gson().toJson(sixesAndFoursWiseSortedList);
 	}
+
+	// Sorting the list according to strike rate with 6s and 4s
+	public String getStrikeRateWith6sAnd4sWiseSortedData() {
+		List<IPLBatsmanCSV> strikeRateWithSixesAndFoursWiseSortedList= batsmanCSVList.stream()
+				.sorted(Comparator.comparing(batsman -> ((batsman.Sixes*6 + batsman.Fours*4)/batsman.BF)*100))
+				.collect(Collectors.toList());
+		Collections.reverse(strikeRateWithSixesAndFoursWiseSortedList);
+		return new Gson().toJson(strikeRateWithSixesAndFoursWiseSortedList);
+	}
 }
