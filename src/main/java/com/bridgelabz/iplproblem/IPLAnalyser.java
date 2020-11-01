@@ -111,4 +111,13 @@ public class IPLAnalyser {
 				.collect(Collectors.toList());
 		return new Gson().toJson(averageWiseSortedList);
 	}
+
+	// Sorting the list according to best bowling strike rate
+	public String getTopBowlingStrikeRateWiseSortedData() {
+		List<IPLBowlerCSV> strikeRateWiseSortedList = bowlerCSVList.stream()
+				.filter(bowler -> bowler.SR>0)
+				.sorted(Comparator.comparing(bowler -> bowler.SR))
+				.collect(Collectors.toList());
+		return new Gson().toJson(strikeRateWiseSortedList);
+	}
 }
