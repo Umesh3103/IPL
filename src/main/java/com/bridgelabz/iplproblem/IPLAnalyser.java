@@ -63,4 +63,14 @@ public class IPLAnalyser {
 		Collections.reverse(strikeRateWiseSortedList);
 		return new Gson().toJson(strikeRateWiseSortedList);
 	}
+
+	// Sorting the list according to maximum number of 6s and 4s
+	public String get6sAnd4sWiseSortedData() {
+		Comparator<IPLBatsmanCSV> comparator = Comparator.comparing(batsman -> batsman.Sixes);
+		List<IPLBatsmanCSV> sixesAndFoursWiseSortedList= batsmanCSVList.stream()
+				.sorted(comparator.thenComparing(batsman -> batsman.Fours))
+				.collect(Collectors.toList());
+		Collections.reverse(sixesAndFoursWiseSortedList);
+		return new Gson().toJson(sixesAndFoursWiseSortedList);
+	}
 }

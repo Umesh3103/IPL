@@ -16,9 +16,15 @@ public class IPLBatsmanCSV {
 	@CsvBindByName(column = "SR", required =true)
 	public Double SR;
 
+	@CsvBindByName(column = "Fours", required =true)
+	public Double Fours;
+	
+	@CsvBindByName(column = "Sixes", required =true)
+	public Double Sixes;
+
 	@Override
 	public String toString() {
-		return "IPLBatsmanCSV [PLAYER=" + PLAYER + ", Runs=" + Runs + ", Avg=" + Avg + ", SR=" + SR + "]";
+		return "IPLBatsmanCSV [PLAYER=" + PLAYER + ", Runs=" + Runs + ", Avg=" + Avg + ", SR=" + SR + ", Fours=" + Fours
+				+ ", Sixes=" + Sixes + "]";
 	}
-
 }
