@@ -5,11 +5,15 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.bl.creatingJar.CSVBuilderException;
 import com.bl.creatingJar.CSVBuilderFactory;
 import com.bl.creatingJar.ICSVBuilder;
+import com.google.gson.Gson;
 
 public class IPLAnalyser {
 
@@ -40,5 +44,14 @@ public class IPLAnalyser {
 		} catch(CSVBuilderException e){
 			throw new IPLAnalyserException(e.getMessage(),e.type.name());
 		}
+	}
+
+	// Sorting the list according to batting average in descending order
+	public String getAverageWiseSortedData() {
+		List<IPLBatsmanCSV> averageWiseSortedList = batsmanCSVList.stream()
+													.sorted(Comparator.comparing(batsman -> batsman.Avg))
+													.collect(Collectors.toList());
+		Collections.reverse(averageWiseSortedList);
+		return new Gson().toJson(averageWiseSortedList);
 	}
 }
