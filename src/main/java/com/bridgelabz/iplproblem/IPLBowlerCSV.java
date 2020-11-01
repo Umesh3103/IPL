@@ -19,6 +19,12 @@ public class IPLBowlerCSV {
 	@CsvBindByName(column = "SR", required =true)
 	public Double SR;
 
+	@CsvBindByName(column = "fourWickets", required =true)
+	public Double fourWickets;
+	
+	@CsvBindByName(column = "fiveWickets", required =true)
+	public Double fiveWickets;
+	
 	@Override
 	public String toString() {
 		return "IPLBowlerCSV [PLAYER=" + PLAYER + ", Runs=" + Runs + ", Econ=" + Econ + ", Avg=" + Avg + ", SR=" + SR

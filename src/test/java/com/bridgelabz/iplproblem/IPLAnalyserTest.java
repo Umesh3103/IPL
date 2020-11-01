@@ -148,4 +148,17 @@ public class IPLAnalyserTest {
 			System.out.println("Something went wrong, please recheck");
 		}
 	} 
+	
+	@Test
+	public void givenIPLBowlerCSVFile_WhenSortedByStrikeRateWith5wAnd4w_ShouldReturnSortedresult() {
+		try {
+			IPLAnalyser iplAnalyser = new IPLAnalyser();
+			iplAnalyser.loadIPLBowlerData(IPL_BOWLERS_CSV_FILE_PATH);
+			String sortedIPLData = iplAnalyser.getBowlingStrikeRateWith5wAnd4wWiseSortedData();
+			IPLBowlerCSV[] bowlerCSV = new Gson().fromJson(sortedIPLData, IPLBowlerCSV[].class);
+			Assert.assertEquals("Alzarri Joseph", bowlerCSV[0].PLAYER);
+		} catch (IPLAnalyserException e) {
+			System.out.println("Something went wrong, please recheck");
+		}
+	} 
 }
