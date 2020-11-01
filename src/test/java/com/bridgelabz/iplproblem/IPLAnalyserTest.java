@@ -9,9 +9,9 @@ public class IPLAnalyserTest {
 
 	private static final String IPL_BATSMAN_CSV_FILE_PATH = "./src/test/java/resources/IPL2019FactsheetMostRuns.csv";
 	private static final String IPL_BOWLERS_CSV_FILE_PATH = "./src/test/java/resources/IPL2019FactsheetMostWkts.csv";
-	
-	@Test 
-	public void givenIPLBatsmanCSVFile_ShouldReturnCorrectRecords(){
+
+	@Test
+	public void givenIPLBatsmanCSVFile_ShouldReturnCorrectRecords() {
 		try {
 			IPLAnalyser iplAnalyser = new IPLAnalyser();
 			int numOfRecords = iplAnalyser.loadIPLBatsmanData(IPL_BATSMAN_CSV_FILE_PATH);
@@ -20,9 +20,9 @@ public class IPLAnalyserTest {
 			System.out.println("Something went wrong, please recheck");
 		}
 	}
-	
-	@Test 
-	public void givenIPLBowlerCSVFile_ShouldReturnCorrectRecords(){
+
+	@Test
+	public void givenIPLBowlerCSVFile_ShouldReturnCorrectRecords() {
 		try {
 			IPLAnalyser iplAnalyser = new IPLAnalyser();
 			int numOfRecords = iplAnalyser.loadIPLBowlerData(IPL_BOWLERS_CSV_FILE_PATH);
@@ -31,16 +31,28 @@ public class IPLAnalyserTest {
 			System.out.println("Something went wrong, please recheck");
 		}
 	}
-	
-	@Test 
-	public void givenIPLBatsmanCSVFile_WhenSortedByAverages_ShouldReturnSortedresult(){
-		
-		try{
+
+	@Test
+	public void givenIPLBatsmanCSVFile_WhenSortedByAverages_ShouldReturnSortedresult() {
+		try {
 			IPLAnalyser iplAnalyser = new IPLAnalyser();
 			iplAnalyser.loadIPLBatsmanData(IPL_BATSMAN_CSV_FILE_PATH);
-			String sortedIPLDate = iplAnalyser.getAverageWiseSortedData();
-			IPLBatsmanCSV[] batsmanCSV= new Gson().fromJson(sortedIPLDate, IPLBatsmanCSV[].class);
+			String sortedIPLData = iplAnalyser.getAverageWiseSortedData();
+			IPLBatsmanCSV[] batsmanCSV = new Gson().fromJson(sortedIPLData, IPLBatsmanCSV[].class);
 			Assert.assertEquals("MS Dhoni", batsmanCSV[0].PLAYER);
+		} catch (IPLAnalyserException e) {
+			System.out.println("Something went wrong, please recheck");
+		}
+	}
+
+	@Test
+	public void givenIPLBatsmanCSVFile_WhenSortedByStrikeRate_ShouldReturnSortedresult() {
+		try {
+			IPLAnalyser iplAnalyser = new IPLAnalyser();
+			iplAnalyser.loadIPLBatsmanData(IPL_BATSMAN_CSV_FILE_PATH);
+			String sortedIPLData = iplAnalyser.getStrikeRateWiseSortedData();
+			IPLBatsmanCSV[] batsmanCSV = new Gson().fromJson(sortedIPLData, IPLBatsmanCSV[].class);
+			Assert.assertEquals("Ishant Sharma", batsmanCSV[0].PLAYER);
 		} catch (IPLAnalyserException e) {
 			System.out.println("Something went wrong, please recheck");
 		}
