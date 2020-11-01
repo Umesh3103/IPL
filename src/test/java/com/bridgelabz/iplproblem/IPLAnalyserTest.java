@@ -173,5 +173,18 @@ public class IPLAnalyserTest {
 		} catch (IPLAnalyserException e) {
 			System.out.println("Something went wrong, please recheck");
 		}
-	} 
+	}
+	
+	@Test
+	public void givenIPLBowlerCSVFile_WhenSortedByWicketsWithBestAverage_ShouldReturnSortedresult() {
+		try {
+			IPLAnalyser iplAnalyser = new IPLAnalyser();
+			iplAnalyser.loadIPLBowlerData(IPL_BOWLERS_CSV_FILE_PATH);
+			String sortedIPLData = iplAnalyser.getWicketsWithAverageWiseSortedData();
+			IPLBowlerCSV[] bowlerCSV = new Gson().fromJson(sortedIPLData, IPLBowlerCSV[].class);
+			Assert.assertEquals("Imran Tahir", bowlerCSV[0].PLAYER);
+		} catch (IPLAnalyserException e) {
+			System.out.println("Something went wrong, please recheck");
+		}
+	}
 }

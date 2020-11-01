@@ -148,4 +148,14 @@ public class IPLAnalyser {
 				.collect(Collectors.toList());
 		return new Gson().toJson(bowlingAverageWithStrikeRateWiseSortedList);
 	}
+
+	// Sorting the list according to maximum wicket taken with best bowling average
+	public String getWicketsWithAverageWiseSortedData() {
+		Comparator<IPLBowlerCSV> comparator = Comparator.comparing(bowler -> bowler.Wkts);
+		List<IPLBowlerCSV> bowlingAverageWithStrikeRateWiseSortedList = bowlerCSVList.stream()
+				.filter(bowler -> bowler.Avg>0)
+				.sorted(comparator.thenComparing(bowler -> bowler.Avg).reversed())
+				.collect(Collectors.toList());
+		return new Gson().toJson(bowlingAverageWithStrikeRateWiseSortedList);
+	}
 }

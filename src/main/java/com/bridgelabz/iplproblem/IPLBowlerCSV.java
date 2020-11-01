@@ -25,6 +25,9 @@ public class IPLBowlerCSV {
 	@CsvBindByName(column = "fiveWickets", required =true)
 	public Double fiveWickets;
 	
+	@CsvBindByName(column = "Wkts", required =true)
+	public Double Wkts;
+	
 	@Override
 	public String toString() {
 		return "IPLBowlerCSV [PLAYER=" + PLAYER + ", Runs=" + Runs + ", Econ=" + Econ + ", Avg=" + Avg + ", SR=" + SR
